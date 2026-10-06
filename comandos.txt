@@ -1,0 +1,28 @@
+python -m venv .venv
+
+.venv\Scripts\Activate.ps1
+.venv\Scripts\activate
+
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned
+
+pip install django
+pip install -U django-jazzmin==3.0.1
+
+python.exe -m pip install --upgrade pip
+
+django-admin --version
+
+python --version
+
+django-admin startproject app .
+
+python manage.py runserver
+
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py createsuperuser
+
+python manage.py startapp accounts #depednde do seu app
+python manage.py startapp courses #depednde do seu app
+
