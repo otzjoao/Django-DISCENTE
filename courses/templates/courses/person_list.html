@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pessoas</title>
-    <link rel="stylesheet" href="{% static 'Pessoas/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
 </head>
 <body>
     <h1>Pessoas</h1>
 
     <ul>
         {% for person in people %}
-            <li>{{ person.first_name }} {{ person.last_name }}</li>
+            <li>{{ person.first_name }} {{ person.last_name }}
+                <a href="{% url 'courses:person_update' person.pk %}">Editar</a>
+            </li>
         {% empty %}
             <li>Nenhuma pessoa cadastrada.</li>
         {% endfor %}

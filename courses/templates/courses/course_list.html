@@ -1,11 +1,36 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses</title>
+    <title>Cursos</title>
+    <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
 </head>
 <body>
-    
+    <h1>Cursos</h1>
+
+    <ul>
+        {% for course in courses %}
+    <li>
+        {{ course.name }}
+        <a href="{% url 'courses:course_update' course.pk %}">Editar</a>
+    </li>
+{% empty %}
+    <li>Nenhum curso cadastrado.</li>
+{% endfor %}
+    </ul>
+
+    {% if is_paginated %}
+        <nav>
+            {% if page_obj.has_previous %}
+                <a href="{% querystring page=page_obj.previous_page_number %}">Anterior</a>
+            {% endif %}
+            <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+            {% if page_obj.has_next %}
+                <a href="{% querystring page=page_obj.next_page_number %}">Próxima</a>
+            {% endif %}
+        </nav>
+    {% endif %}
 </body>
 </html>
